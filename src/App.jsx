@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import Index from "./pages/Index";
 import FavoritesPage from "./components/FavoritesPage";
+import StoryPage from "./components/StoryPage";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -23,6 +24,7 @@ const App = () => (
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/favorites" element={<FavoritesPage />} />
+                  <Route path="/story/:id" element={<StoryPage />} />
                 </Routes>
               </main>
               <Footer />

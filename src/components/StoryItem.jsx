@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowUpCircle, ExternalLink, MessageSquare, Clock, Star, Share2 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const StoryItem = ({ story }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -43,7 +43,11 @@ const StoryItem = ({ story }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">{story.title}</CardTitle>
+        <CardTitle className="text-lg">
+          <Link to={`/story/${story.objectID}`} className="hover:underline">
+            {story.title}
+          </Link>
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex items-center justify-between mb-4">
@@ -93,9 +97,9 @@ const StoryItem = ({ story }) => {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => window.open(story.url, '_blank')}
+              onClick={() => navigate(`/story/${story.objectID}`)}
             >
-              Read More <ExternalLink className="ml-2 h-4 w-4" />
+              View Comments <MessageSquare className="ml-2 h-4 w-4" />
             </Button>
           </div>
         </div>
