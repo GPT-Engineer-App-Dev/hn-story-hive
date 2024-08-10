@@ -8,7 +8,7 @@ const SortOptions = ({ sortBy, setSortBy }) => {
         <SelectValue placeholder="Sort by" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="">Relevance</SelectItem>
+        <SelectItem value="default">Relevance</SelectItem>
         <SelectItem value="numComments">Comments</SelectItem>
         <SelectItem value="points">Points</SelectItem>
         <SelectItem value="date">Date</SelectItem>

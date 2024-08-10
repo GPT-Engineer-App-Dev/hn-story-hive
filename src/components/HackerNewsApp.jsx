@@ -6,9 +6,13 @@ import Pagination from './Pagination';
 import SortOptions from './SortOptions';
 
 const fetchStories = async ({ page, sortBy }) => {
-  const response = await fetch(
-    `https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=20&page=${page}&${sortBy}`
-  );
+  let url = `https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=20&page=${page}`;
+  
+  if (sortBy && sortBy !== 'default') {
+    url += `&${sortBy}`;
+  }
+
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
@@ -18,7 +22,7 @@ const fetchStories = async ({ page, sortBy }) => {
 const HackerNewsApp = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [page, setPage] = useState(0);
-  const [sortBy, setSortBy] = useState('');
+  const [sortBy, setSortBy] = useState('default');
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['stories', page, sortBy],
